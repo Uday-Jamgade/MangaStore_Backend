@@ -20,7 +20,9 @@ router.post("/add-book",authenticateToken,async(req,res)=>{
             auther:req.body.auther,
             price:req.body.price,
             desc:req.body.desc,
-            language:req.body.language
+            language:req.body.language,
+            category:req.body.category,
+            genre:req.body.genre
         })
         await AddBook.save();
         return res.status(200).json({message:"Book Added Succesfully"})
@@ -66,6 +68,22 @@ router.get("/get-book",async(req,res)=>{
 
     try{
       const book = await Book.find().sort({createdAt:-1});
+        return res.json({
+            status:"success",
+            data: book
+        })
+    }catch(error){
+        return res.status(500).json({message:"server error "})
+    }
+   
+})
+
+router.get("/get-book-category",async(req,res)=>{
+
+    const {category}=req.query;
+
+    try{
+      const book = await Book.find({category});
         return res.json({
             status:"success",
             data: book

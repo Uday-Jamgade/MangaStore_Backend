@@ -24,6 +24,12 @@ const Book = new mongoose.Schema({
     language:{
         type:String,
         required:true
+    },
+    category:{
+        type:String,
+    },
+    genre:{
+        type:String,
     }
    
 },

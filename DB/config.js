@@ -1,3 +1,5 @@
 const mongoose = require("mongoose");
+require('dotenv').config(); 
+const uri=process.env.URL;
 
-mongoose.connect("mongodb://localhost:27017/BooksStore");
+mongoose.connect(uri);
